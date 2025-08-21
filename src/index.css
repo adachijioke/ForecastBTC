@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ForecastBTC Design System - Bitcoin-themed prediction market platform */
+
+@layer base {
+  :root {
+    /* Core Bitcoin-themed colors */
+    --background: 222 84% 4%;
+    --foreground: 210 40% 98%;
+    
+    --card: 222 84% 6%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222 84% 5%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* Bitcoin orange as primary */
+    --primary: 25 95% 53%;
+    --primary-foreground: 222 84% 4%;
+    --primary-hover: 25 95% 48%;
+    
+    /* Sophisticated secondary colors */
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 32% 15%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 60 100% 50%;
+    --accent-foreground: 222 84% 4%;
+    
+    /* Status colors */
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+    
+    --warning: 48 96% 53%;
+    --warning-foreground: 222 84% 4%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* UI elements */
+    --border: 217 32% 20%;
+    --input: 217 32% 18%;
+    --ring: 25 95% 53%;
+    
+    /* Chart colors */
+    --chart-bull: 142 76% 36%;
+    --chart-bear: 0 84% 60%;
+    --chart-neutral: 215 20% 65%;
+    
+    /* Gradients */
+    --gradient-bitcoin: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(45 100% 60%) 100%);
+    --gradient-bull: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(120 60% 50%) 100%);
+    --gradient-bear: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(15 80% 55%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(222 84% 6%) 0%, hsl(217 32% 12%) 100%);
+    
+    /* Shadows */
+    --shadow-bitcoin: 0 10px 30px -10px hsl(25 95% 53% / 0.3);
+    --shadow-card: 0 4px 20px -2px hsl(222 84% 2% / 0.5);
+    --shadow-glow: 0 0 20px hsl(25 95% 53% / 0.2);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    --radius: 0.75rem;
+  }
+  
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222 84% 4%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4%;
+    
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 25 95% 48%;
+    
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    
+    --shadow-card: 0 2px 10px -2px hsl(222 84% 4% / 0.1);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-hover;
+  }
+}
+
+@layer components {
+  /* Bitcoin-themed animations */
+  @keyframes bitcoin-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  @keyframes price-up {
+    0% { transform: translateY(10px); opacity: 0; color: hsl(var(--success)); }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes price-down {
+    0% { transform: translateY(-10px); opacity: 0; color: hsl(var(--destructive)); }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px hsl(var(--primary) / 0.5); }
+    50% { box-shadow: 0 0 20px hsl(var(--primary) / 0.8); }
+  }
+  
+  /* Utility classes */
+  .gradient-bitcoin { background: var(--gradient-bitcoin); }
+  .gradient-bull { background: var(--gradient-bull); }
+  .gradient-bear { background: var(--gradient-bear); }
+  .gradient-card { background: var(--gradient-card); }
+  
+  .shadow-bitcoin { box-shadow: var(--shadow-bitcoin); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  
+  .animate-bitcoin-pulse { animation: bitcoin-pulse 2s ease-in-out infinite; }
+  .animate-price-up { animation: price-up 0.5s ease-out; }
+  .animate-price-down { animation: price-down 0.5s ease-out; }
+  .animate-glow { animation: glow 2s ease-in-out infinite; }
+  
+  .transition-smooth { transition: var(--transition-smooth); }
+  .transition-bounce { transition: var(--transition-bounce); }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
