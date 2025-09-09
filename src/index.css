@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark theme colors */
+    --background: 0 0% 4%;           /* Dark background */
+    --foreground: 0 0% 95%;          /* White text */
+    
+    --card: 0 0% 8%;                 /* Card background */
+    --card-foreground: 0 0% 95%;
+    
+    --border: 0 0% 15%;              /* Borders */
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+    
+    --primary: 33 100% 50%;          /* Bitcoin orange */
+    --primary-foreground: 0 0% 0%;
+    
+    --accent: 33 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
